@@ -78,6 +78,37 @@
     });
   }
 
+  // Documents des projets : sur ordinateur, ouverture dans une visionneuse sur la page ;
+  // sur téléphone, le lecteur PDF natif s'ouvre dans un nouvel onglet.
+  const docLinks = document.querySelectorAll("a[data-doc]");
+  if (docLinks.length && "HTMLDialogElement" in window) {
+    const viewer = document.createElement("dialog");
+    viewer.className = "viewer";
+    viewer.setAttribute("aria-label", "Document");
+    viewer.innerHTML =
+      '<div class="viewer__inner"><div class="viewer__bar"><p class="viewer__title"></p>' +
+      '<div class="viewer__actions"><a class="link viewer__open" target="_blank" rel="noopener">Ouvrir dans un onglet ↗</a>' +
+      '<button type="button" class="viewer__close" aria-label="Fermer le document">✕</button></div></div>' +
+      '<iframe class="viewer__frame" title="Document"></iframe></div>';
+    document.body.append(viewer);
+    const frame = viewer.querySelector("iframe");
+    const title = viewer.querySelector(".viewer__title");
+    const openLink = viewer.querySelector(".viewer__open");
+    viewer.querySelector(".viewer__close").addEventListener("click", () => viewer.close());
+    viewer.addEventListener("click", (e) => { if (e.target === viewer) viewer.close(); });
+    viewer.addEventListener("close", () => { frame.src = "about:blank"; document.body.classList.remove("viewer-open"); });
+    const wide = matchMedia("(min-width: 900px)");
+    docLinks.forEach((link) => link.addEventListener("click", (e) => {
+      if (!wide.matches) return;
+      e.preventDefault();
+      frame.src = link.href;
+      title.textContent = link.dataset.title || link.textContent.trim();
+      openLink.href = link.href;
+      viewer.showModal();
+      document.body.classList.add("viewer-open");
+    }));
+  }
+
   // Bandeau « Au quotidien » : une phrase à la fois, qui glisse vers le haut
   const ticker = document.querySelector("[data-ticker]");
   if (ticker && !reduce) {
