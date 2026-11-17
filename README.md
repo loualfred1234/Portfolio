@@ -1,9 +1,10 @@
 # Lou Alfred — Portfolio
 
 Site statique en HTML, CSS et un peu de JavaScript : aucune dépendance, aucune étape de build.
-Style magazine : titres en Antonio (condensé fin, en capitales), Instrument Serif en italique pour les petites touches,
+Style magazine : titres en Archivo étendu (semi-gras, en capitales), Instrument Serif en italique pour les petites touches,
 Inter pour le texte ; noir, ivoire, beige ; aucun arrondi.
-L'épaisseur des titres se règle avec `--display-weight` en haut de `css/style.css` (200 = plus fin, 400 = plus présent).
+Les titres se règlent en haut de `css/style.css` : `--display-weight` (550 = plus léger, 750 = plus gras)
+et `--display-stretch` (100% = largeur normale, 125% = étendue).
 
 ## Structure
 
