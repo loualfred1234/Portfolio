@@ -1,7 +1,9 @@
 # Lou Alfred — Portfolio
 
 Site statique en HTML, CSS et un peu de JavaScript : aucune dépendance, aucune étape de build.
-Direction « journal » : noir, ivoire, beige ; Bodoni Moda pour les titres, Inter pour le texte ; aucun arrondi.
+Style magazine : titres en Antonio (condensé fin, en capitales), Instrument Serif en italique pour les petites touches,
+Inter pour le texte ; noir, ivoire, beige ; aucun arrondi.
+L'épaisseur des titres se règle avec `--display-weight` en haut de `css/style.css` (200 = plus fin, 400 = plus présent).
 
 ## Structure
 
@@ -33,8 +35,8 @@ Puis ouvrir http://localhost:4321 dans le navigateur. `Ctrl + C` pour arrêter.
 
 Les photos sont provisoires (picsum.photos). Dépose tes images dans `img/`, puis remplace
 chaque `src="https://picsum.photos/..."` par `src="img/mon-image.jpg"`.
-Les filtres appliqués aux photos se règlent dans `css/style.css` :
-`--photo-filter` (projets) et `--photo-filter-bw` (portraits en noir et blanc). Mets `none` pour les désactiver.
+Le filtre doux appliqué aux photos se règle dans `css/style.css` avec `--photo-filter` :
+mets `none` pour le désactiver quand les vraies photos sont en place.
 
 ## Documents des projets
 
