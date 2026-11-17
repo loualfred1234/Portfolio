@@ -13,7 +13,7 @@
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Parisienne&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="js/main.js" defer></script>
@@ -53,10 +53,10 @@
           <div class="hero__text">
             <p class="hero__kicker kicker fade-up" style="--d:.15s">Portfolio — <span data-year>2026</span></p>
             <h1 class="hero__name"><span class="line"><span>Lou</span></span><span class="line"><span>Alfred</span></span></h1>
-            <p class="hero__script">Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel</p>
+            <p class="hero__sub fade-up" style="--d:.75s">Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel</p>
           </div>
           <figure class="hero__photo">
-            <div class="media"><div class="frame"><img src="https://picsum.photos/seed/lou-portrait-hero/840/1120" width="840" height="1120" alt="Portrait de Lou Alfred" fetchpriority="high"></div></div>
+            <div class="frame"><img src="img/lou-portrait.jpg" srcset="img/lou-portrait-1000.jpg 750w, img/lou-portrait.jpg 1200w" sizes="(max-width: 860px) 100vw, 52vw" width="1200" height="1600" alt="Lou Alfred lisant le journal dans un café" fetchpriority="high"></div>
           </figure>
         </section>
 
@@ -79,8 +79,8 @@
             <div class="intro__body">
               <h2 id="intro-title" class="intro__title title-m reveal">Des idées, des histoires, <em>des événements.</em></h2>
               <div class="intro__text reveal" style="--d:.1s">
-                <p>Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel, je conçois des projets de A à Z : imaginer la stratégie, créer les contenus qui la portent et organiser les événements qui la font vivre.</p>
-                <p>Trois années d’alternance — chez E.Leclerc, auprès du photographe Jody Priour et chez Mouv’Spa — m’ont appris à allier créativité, sens de l’organisation et goût du terrain.</p>
+                <p>Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel, je conçois des projets de A à Z : imaginer des stratégies, créer des contenus impactants et organiser des événements qui marquent les esprits.</p>
+                <p>Au fil de mes expériences, j’ai développé une vision polyvalente de la communication, du marketing et de l’événementiel. J’aime imaginer des concepts, développer des idées créatives et leur donner vie à travers des projets concrets, pensés dans les moindres détails.</p>
               </div>
               <div class="intro__cta reveal" style="--d:.15s">
                 <a class="btn" href="/a-propos">En savoir plus <span class="arrow">→</span></a>
@@ -88,16 +88,18 @@
             </div>
           </div>
 
-          <div class="intro__qualities reveal">
-            <ul class="qualities" aria-label="Qualités">
-              <li>Créative</li>
-              <li>Dynamique</li>
-              <li>Curieuse</li>
-              <li>Autonome</li>
-              <li>Motivée</li>
-            </ul>
-          </div>
         </section>
+
+        <!-- ============ QUALITÉS (bandeau fixe qui ferme l'intro) ============ -->
+        <div class="qualities-band">
+          <ul class="qualities reveal" aria-label="Qualités">
+            <li>Créative</li>
+            <li>Dynamique</li>
+            <li>Curieuse</li>
+            <li>Autonome</li>
+            <li>Motivée</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -105,7 +107,6 @@
     <section class="section section--beige" id="projets" aria-labelledby="projets-title">
       <div class="container">
         <div class="projects__head">
-          <p class="kicker reveal">Mon travail</p>
           <h2 id="projets-title" class="title-l reveal">Mes <em>projets</em></h2>
           <p class="reveal" style="--d:.1s">Mes expériences à l’école et en entreprise m’ont permis de mener différents projets de communication, alliant stratégie, création de contenu et gestion de projet. Elles m’ont permis de développer des compétences concrètes, comme l’adaptabilité, le travail en équipe et l’analyse des besoins.</p>
         </div>

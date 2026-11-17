@@ -26,7 +26,7 @@
   --display-weight: 850;
   --display-stretch: 125%;
   --serif: "Instrument Serif", "Times New Roman", serif;
-  --script: "Parisienne", "Snell Roundhand", cursive;
+  --phrase: "Cormorant Garamond", "Instrument Serif", "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --gutter: clamp(16px, 4vw, 56px);
@@ -100,7 +100,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .muted { color: var(--taupe); }
 .caption { font-family: var(--serif); font-style: italic; font-size: 1rem; line-height: 1.4; color: var(--taupe); }
 .lead { font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 300; line-height: 1.6; }
-.script { font-family: var(--script); font-weight: 400; font-style: normal; }
+.phrase { font-family: var(--phrase); font-style: italic; font-weight: 500; }
 
 /* Tête de section des pages intérieures : « (À propos de moi) ———— N° 01 » */
 .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid currentColor; margin-bottom: clamp(36px, 5vw, 72px); }
@@ -238,31 +238,28 @@ figcaption.caption { margin-top: 10px; }
 @keyframes bandScroll { from { translate: 0 0; } to { translate: 0 -50%; } }
 
 /* ---------- En-tête : nom à gauche, portrait encadré à droite ---------- */
+/* En deux moitiés : le texte à gauche, ta photo sur toute la hauteur à droite */
 .hero {
   min-height: calc(100svh - var(--header-h));
-  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(12px, 2vw, 32px);
-  align-items: center;
-  padding: clamp(32px, 4.4vw, 64px) var(--gutter) clamp(48px, 5.6vw, 84px) var(--pad-l);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
 }
-.hero__text { grid-column: 1 / span 6; }
+.hero__text { align-self: center; padding: clamp(40px, 6vw, 96px) clamp(24px, 4vw, 64px) clamp(40px, 6vw, 96px) var(--pad-l); }
 .hero__kicker { color: var(--taupe); margin-bottom: clamp(18px, 2.2vw, 30px); }
 .hero__name { font-weight: var(--display-weight); font-size: clamp(2.6rem, 5.4vw, 5.2rem); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase; }
 .hero__name .line { display: block; overflow: hidden; padding-block: 0.04em 0.1em; margin-bottom: -0.1em; }
 .hero__name .line > span { display: inline-block; transform: translateY(105%); animation: rise 1.2s var(--ease) 0.25s forwards; }
 .hero__name .line:nth-child(2) > span { animation-delay: 0.37s; }
-/* La phrase manuscrite s'écrit de gauche à droite */
-.hero__script {
-  margin-top: clamp(16px, 1.8vw, 24px); max-width: 21em;
-  font-family: var(--script); font-size: clamp(1.55rem, 2.2vw, 2.15rem); line-height: 1.3; color: var(--ink-2);
-  clip-path: inset(0 100% 0 0); animation: write 1.9s var(--ease-io) 0.9s forwards;
+/* La phrase sous le nom : italique élégante, à peine manuscrite */
+.hero__sub {
+  margin-top: clamp(16px, 1.8vw, 24px); max-width: 24em;
+  font-family: var(--phrase); font-style: italic; font-weight: 500;
+  font-size: clamp(1.35rem, 1.9vw, 1.85rem); line-height: 1.3; color: var(--ink-2);
 }
-.hero__meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: clamp(28px, 3.6vw, 48px); color: var(--taupe); }
 
-.hero__photo { grid-column: 8 / -1; justify-self: end; position: relative; width: min(100%, 420px, calc((100svh - var(--header-h) - 140px) * 0.75)); min-width: 240px; }
-.hero__photo::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--line-strong); opacity: 0; animation: fadeIn 1s var(--ease) 1.4s forwards; }
-.hero__photo .media { aspect-ratio: 3 / 4; }
-.hero__photo .frame { position: absolute; inset: 0; overflow: hidden; clip-path: inset(100% 0 0 0); animation: unclip 1.5s var(--ease-io) 0.35s forwards; }
-.hero__photo .frame img { transform: scale(1.15); animation: unzoom 2.2s var(--ease) 0.35s forwards; }
+/* Ta photo, sans filtre, qui se dévoile en rideau */
+.hero__photo { position: relative; min-height: 440px; overflow: hidden; background: var(--beige); }
+.hero__photo .frame { position: absolute; inset: 0; overflow: hidden; clip-path: inset(100% 0 0 0); animation: unclip 1.6s var(--ease-io) 0.3s forwards; }
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; transform: scale(1.12); animation: unzoom 2.4s var(--ease) 0.3s forwards; }
 
 .fade-up { opacity: 0; animation: fadeUp 1s var(--ease) forwards; animation-delay: var(--d, 0.8s); }
 
@@ -274,14 +271,12 @@ figcaption.caption { margin-top: 10px; }
 @keyframes fadeIn { to { opacity: 1; } }
 
 @media (max-width: 860px) {
-  .hero { min-height: auto; row-gap: 40px; }
-  .hero__text, .hero__photo { grid-column: 1 / -1; }
-  .hero__photo { justify-self: start; width: calc(100% - 14px); min-width: 0; }
-  .hero__photo::before { inset: 12px -12px -12px 12px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__photo { min-height: 0; aspect-ratio: 4 / 5; }
 }
 @media (max-width: 760px) {
   .lead-in { --band: 34px; --pad-l: 16px; }
-  .hero { padding: 28px 16px 56px; }
+  .hero__text { padding: 32px 16px 36px; }
   .hero__name { font-size: clamp(2.4rem, 12.5vw, 4rem); }
 }
 
@@ -297,7 +292,7 @@ figcaption.caption { margin-top: 10px; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Intro (sans titre de section) ---------- */
-.intro { padding: clamp(56px, 6.5vw, 96px) var(--gutter) clamp(72px, 8vw, 120px) var(--pad-l); }
+.intro { padding: clamp(56px, 6.5vw, 96px) var(--gutter) clamp(64px, 7vw, 104px) var(--pad-l); }
 .intro__grid { row-gap: 40px; align-items: center; }
 .intro__fig { grid-column: 1 / span 5; }
 .intro__fig .media { aspect-ratio: 4 / 5; }
@@ -307,14 +302,14 @@ figcaption.caption { margin-top: 10px; }
 .intro__text p + p { margin-top: 1em; }
 .intro__cta { margin-top: clamp(28px, 3vw, 40px); }
 
-/* Les qualités, bien séparées du titre au-dessus */
-.intro__qualities { margin-top: clamp(80px, 10vw, 150px); padding-top: clamp(28px, 3.4vw, 44px); border-top: 1px solid var(--line-strong); }
+/* Les qualités : un bandeau fixe, encadré de deux filets, qui ferme l'intro */
+.qualities-band { border-block: 1px solid var(--ink); padding: clamp(18px, 2.2vw, 28px) var(--gutter) clamp(18px, 2.2vw, 28px) var(--pad-l); }
 .qualities {
   display: flex; flex-wrap: wrap; gap: 0.1em 0.45em;
   font-weight: var(--display-weight); font-size: clamp(1.4rem, 2.7vw, 2.5rem);
   line-height: 1.12; letter-spacing: 0.01em; text-transform: uppercase;
 }
-.intro__qualities .qualities { justify-content: center; font-size: clamp(1.3rem, 2.25vw, 2.15rem); }
+.qualities-band .qualities { justify-content: space-between; font-size: clamp(1.15rem, 2.3vw, 2.2rem); }
 .qualities li { -webkit-text-stroke: 1px transparent; transition: color 0.5s var(--ease), -webkit-text-stroke-color 0.5s var(--ease); }
 .qualities li:nth-child(even) { color: transparent; -webkit-text-stroke-color: var(--ink); }
 .qualities li:nth-child(even):hover { color: var(--ink); }
@@ -325,7 +320,9 @@ figcaption.caption { margin-top: 10px; }
   .intro__fig { max-width: 420px; }
 }
 @media (max-width: 760px) {
-  .intro { padding: 48px 16px 64px; }
+  .intro { padding: 48px 16px 56px; }
+  .qualities-band { padding: 18px 16px; }
+  .qualities-band .qualities { justify-content: center; gap: 0.15em 0.5em; }
 }
 
 /* ==========================================================================
@@ -489,7 +486,7 @@ figcaption.caption { margin-top: 10px; }
 .about-hero__media .media { aspect-ratio: 3 / 4; }
 .about-hero__body { grid-column: 7 / -1; }
 .about-hero h1 { font-weight: var(--display-weight); font-size: clamp(2.2rem, 6vw, 5.4rem); line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; margin-block: 16px 22px; }
-.about-hero__role { font-family: var(--script); font-style: normal; font-size: clamp(1.5rem, 2.3vw, 2.2rem); line-height: 1.3; color: var(--ink-2); }
+.about-hero__role { font-family: var(--phrase); font-style: italic; font-weight: 500; font-size: clamp(1.4rem, 2.1vw, 1.95rem); line-height: 1.3; color: var(--ink-2); }
 .infos { margin-top: clamp(28px, 4vw, 52px); border-top: 1px solid var(--ink); }
 .infos div { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
 .infos dt { padding-top: 3px; color: var(--taupe); }
