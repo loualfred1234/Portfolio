@@ -13,7 +13,7 @@
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Parisienne&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="js/main.js" defer></script>
@@ -37,93 +37,75 @@
 
   <main id="main">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero" aria-label="Introduction">
-      <div class="hero__cover">
-        <div class="hero__band" aria-hidden="true">
-          <div class="hero__band-track">
-            <div class="grp"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span></div>
-            <div class="grp"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span></div>
-          </div>
-        </div>
-
-        <div class="hero__main">
-          <div class="hero__strip">
-            <figure class="hero__shot" style="--d:.2s"><div class="frame"><img src="https://picsum.photos/seed/lou-cover-1/700/900" width="700" height="900" alt="Portrait de Lou Alfred" fetchpriority="high"></div></figure>
-            <figure class="hero__shot" style="--d:.35s"><div class="frame"><img src="https://picsum.photos/seed/lou-cover-2/1100/800" width="1100" height="800" alt=""></div></figure>
-            <figure class="hero__shot" style="--d:.5s"><div class="frame"><img src="https://picsum.photos/seed/lou-cover-3/600/900" width="600" height="900" alt=""></div></figure>
-          </div>
-
-          <div class="hero__title-row">
-            <h1 class="hero__name"><span class="line"><span>Lou</span></span> <span class="line"><span>Alfred</span></span></h1>
-            <a class="hero__arrow fade-up" style="--d:1.2s" href="#bienvenue" aria-label="Faire défiler vers la suite">
-              <svg viewBox="0 0 76 16" aria-hidden="true"><path d="M0 8h74M66 1l8 7-8 7" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
-            </a>
-          </div>
-          <div class="hero__sub-row fade-up" style="--d:1.05s">
-            <p class="kicker">Communication · Marketing · Événementiel</p>
-            <p class="hero__sub">Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel — Caen.</p>
-          </div>
+    <!-- Le bandeau vertical longe l'en-tête, le bandeau des compétences et l'intro -->
+    <div class="lead-in">
+      <div class="side-band" aria-hidden="true">
+        <div class="side-band__track">
+          <div class="grp"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span></div>
+          <div class="grp"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Marketing</span><span>·</span></div>
         </div>
       </div>
 
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <div class="marquee__group"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Stratégie marketing</span><span>·</span><span>Création de contenus</span><span>·</span><span>Création de sites web</span><span>·</span><span>Gestion de projet</span><span>·</span><span>Photographie</span><span>·</span><span>Montage vidéo</span><span>·</span></div>
-          <div class="marquee__group"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Stratégie marketing</span><span>·</span><span>Création de contenus</span><span>·</span><span>Création de sites web</span><span>·</span><span>Gestion de projet</span><span>·</span><span>Photographie</span><span>·</span><span>Montage vidéo</span><span>·</span></div>
-        </div>
-      </div>
-    </section>
+      <div class="lead-in__content">
 
-    <!-- ============ BIENVENUE ============ -->
-    <section class="section" id="bienvenue" aria-labelledby="bienvenue-title">
-      <div class="container">
-        <div class="sec-head reveal">
-          <h2 id="bienvenue-title" class="kicker">Bienvenue</h2>
-          <span class="no">01</span>
+        <!-- ============ EN-TÊTE ============ -->
+        <section class="hero" aria-label="Introduction">
+          <div class="hero__text">
+            <p class="hero__kicker kicker fade-up" style="--d:.15s">Portfolio — <span data-year>2026</span></p>
+            <h1 class="hero__name"><span class="line"><span>Lou</span></span><span class="line"><span>Alfred</span></span></h1>
+            <p class="hero__script">Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel</p>
+          </div>
+          <figure class="hero__photo">
+            <div class="media"><div class="frame"><img src="https://picsum.photos/seed/lou-portrait-hero/840/1120" width="840" height="1120" alt="Portrait de Lou Alfred" fetchpriority="high"></div></div>
+          </figure>
+        </section>
+
+        <!-- ============ BANDEAU DES COMPÉTENCES ============ -->
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <div class="marquee__group"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Stratégie marketing</span><span>·</span><span>Création de contenus</span><span>·</span><span>Création de sites web</span><span>·</span><span>Gestion de projet</span><span>·</span><span>Photographie</span><span>·</span><span>Montage vidéo</span><span>·</span></div>
+            <div class="marquee__group"><span>Communication</span><span>·</span><span>Événementiel</span><span>·</span><span>Stratégie marketing</span><span>·</span><span>Création de contenus</span><span>·</span><span>Création de sites web</span><span>·</span><span>Gestion de projet</span><span>·</span><span>Photographie</span><span>·</span><span>Montage vidéo</span><span>·</span></div>
+          </div>
         </div>
 
-        <div class="grid-12 welcome">
-          <aside class="welcome__aside">
-            <p class="kicker muted reveal">Communication · Marketing · Événementiel</p>
-            <figure>
+        <!-- ============ INTRO ============ -->
+        <section class="intro" id="bienvenue" aria-labelledby="intro-title">
+          <div class="grid-12 intro__grid">
+            <figure class="intro__fig">
               <div class="media reveal-img"><img src="https://picsum.photos/seed/lou-welcome/700/875" width="700" height="875" alt="Lou Alfred en coulisses d’un événement" loading="lazy" decoding="async"></div>
               <figcaption class="caption reveal">En coulisses d’un événement.</figcaption>
             </figure>
-          </aside>
 
-          <div class="welcome__body">
-            <p class="welcome__title title-m reveal">Des idées, des histoires, <em>des événements.</em></p>
-            <div class="welcome__text reveal" style="--d:.1s">
-              <p>Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel, je conçois des projets de A à Z : imaginer la stratégie, créer les contenus qui la portent et organiser les événements qui la font vivre.</p>
-              <p>Trois années d’alternance — chez E.Leclerc, auprès du photographe Jody Priour et chez Mouv’Spa — m’ont appris à allier créativité, sens de l’organisation et goût du terrain.</p>
-            </div>
-
-            <ul class="qualities" aria-label="Qualités">
-              <li class="reveal">Créative</li>
-              <li class="reveal" style="--d:.08s">Dynamique</li>
-              <li class="reveal" style="--d:.16s">Curieuse</li>
-              <li class="reveal" style="--d:.24s">Autonome</li>
-              <li class="reveal" style="--d:.32s">Motivée</li>
-            </ul>
-
-            <div class="welcome__cta reveal">
-              <a class="btn" href="/a-propos">En savoir plus <span class="arrow">→</span></a>
+            <div class="intro__body">
+              <h2 id="intro-title" class="intro__title title-m reveal">Des idées, des histoires, <em>des événements.</em></h2>
+              <div class="intro__text reveal" style="--d:.1s">
+                <p>Diplômée d’un Bachelor Communication, Marketing &amp; Événementiel, je conçois des projets de A à Z : imaginer la stratégie, créer les contenus qui la portent et organiser les événements qui la font vivre.</p>
+                <p>Trois années d’alternance — chez E.Leclerc, auprès du photographe Jody Priour et chez Mouv’Spa — m’ont appris à allier créativité, sens de l’organisation et goût du terrain.</p>
+              </div>
+              <div class="intro__cta reveal" style="--d:.15s">
+                <a class="btn" href="/a-propos">En savoir plus <span class="arrow">→</span></a>
+              </div>
             </div>
           </div>
-        </div>
+
+          <div class="intro__qualities reveal">
+            <ul class="qualities" aria-label="Qualités">
+              <li>Créative</li>
+              <li>Dynamique</li>
+              <li>Curieuse</li>
+              <li>Autonome</li>
+              <li>Motivée</li>
+            </ul>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <!-- ============ MES PROJETS ============ -->
     <section class="section section--beige" id="projets" aria-labelledby="projets-title">
       <div class="container">
-        <div class="sec-head reveal">
-          <span class="kicker">Mes projets</span>
-          <span class="no">02</span>
-        </div>
-
-        <div class="grid-12 projects__intro">
+        <div class="projects__head">
+          <p class="kicker reveal">Mon travail</p>
           <h2 id="projets-title" class="title-l reveal">Mes <em>projets</em></h2>
           <p class="reveal" style="--d:.1s">Mes expériences à l’école et en entreprise m’ont permis de mener différents projets de communication, alliant stratégie, création de contenu et gestion de projet. Elles m’ont permis de développer des compétences concrètes, comme l’adaptabilité, le travail en équipe et l’analyse des besoins.</p>
         </div>
@@ -160,10 +142,9 @@
       </div>
     </section>
 
-    <!-- ============ AU QUOTIDIEN (bandeau) ============ -->
-    <section class="ticker" aria-label="Au quotidien" data-ticker>
+    <!-- ============ BANDEAU NOIR ============ -->
+    <section class="ticker" aria-label="Ce que je fais" data-ticker>
       <div class="container ticker__inner">
-        <span class="ticker__label">(Au quotidien)</span>
         <ul class="sr-only">
           <li>J’imagine des stratégies.</li><li>J’organise des événements.</li><li>Je crée des contenus.</li><li>Je conçois des sites web.</li><li>Je photographie.</li><li>Je monte des vidéos.</li><li>Je pilote des projets.</li>
         </ul>
@@ -180,30 +161,22 @@
       </div>
     </section>
 
-    <!-- ============ EN CHIFFRES ============ -->
-    <section class="section" aria-labelledby="chiffres-title">
+    <!-- ============ CHIFFRES PUIS CITATION ============ -->
+    <section class="figures" aria-label="En chiffres">
       <div class="container">
-        <div class="sec-head reveal">
-          <h2 id="chiffres-title" class="kicker">En chiffres</h2>
-          <span class="no">03</span>
-        </div>
-        <blockquote class="quote reveal">« Dynamique et curieuse, je suis passionnée par la communication et la création de projets événementiels concrets. »</blockquote>
         <div class="stats">
           <div class="stat reveal"><p class="stat__n">16</p><p class="stat__l kicker">Projets réalisés</p></div>
           <div class="stat reveal" style="--d:.08s"><p class="stat__n">04</p><p class="stat__l kicker">Expériences pro</p></div>
           <div class="stat reveal" style="--d:.16s"><p class="stat__n">03</p><p class="stat__l kicker">Ans d’alternance</p></div>
           <div class="stat reveal" style="--d:.24s"><p class="stat__n">02</p><p class="stat__l kicker">Diplômes</p></div>
         </div>
+        <blockquote class="quote reveal">« Dynamique et curieuse, je suis passionnée par la communication et la création de projets événementiels concrets. »</blockquote>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="section section--beige" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="sec-head reveal">
-          <span class="kicker">Contact</span>
-          <span class="no">04</span>
-        </div>
         <h2 id="contact-title" class="contact__title reveal">Travaillons<br><em>ensemble.</em></h2>
         <a class="contact__mail reveal" href="mailto:lou.alfred@yahoo.com">lou.alfred@yahoo.com</a>
         <dl class="contact__grid reveal">
