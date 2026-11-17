@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Note d’intention — Bons cadeaux · Lou Alfred</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,800;125,900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+:root {
+  --ivory: #f4f0e8; --paper: #fbf9f5; --beige: #e6ddcf; --beige-light: #eee7db; --sand: #cdbfa9;
+  --taupe: #6b6155; --ink: #141414; --ink-2: #2a2826; --line: rgba(20, 20, 20, 0.16);
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+/* Page A4 ivoire ; seule la marge du bas existe (pied de page + numéro) */
+@page {
+  size: A4;
+  margin: 0 0 16mm 0;
+  background: #f4f0e8;
+  @bottom-left { content: "Lou Alfred — portfolio"; font-family: "Inter"; font-weight: 500; font-size: 6.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: #6b6155; vertical-align: top; padding: 4.4mm 0 0 33mm; }
+  @bottom-right { content: counter(page, decimal-leading-zero) " / " counter(pages, decimal-leading-zero); font-family: "Archivo"; font-stretch: 125%; font-weight: 800; font-size: 7pt; letter-spacing: 0.08em; color: #141414; vertical-align: top; padding: 4.1mm 17mm 0 0; }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html { background: var(--ivory); }
+body { font-family: var(--sans); font-size: 9.6pt; line-height: 1.62; color: var(--ink-2); font-kerning: normal; text-rendering: geometricPrecision; }
+
+/* Éléments répétés sur chaque page */
+.band { position: fixed; top: 0; bottom: 0; left: 0; width: 10mm; background: var(--ink); overflow: hidden; z-index: 3; }
+.band span { position: absolute; left: 0; top: 100%; transform-origin: 0 0; transform: rotate(-90deg) translate(13mm, 3.95mm); white-space: nowrap;
+  font-family: var(--sans); font-weight: 600; font-size: 5.8pt; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ivory); }
+.runner { position: fixed; top: 0; left: 33mm; right: 17mm; height: 17mm; display: flex; align-items: flex-end; justify-content: space-between; gap: 8mm; padding-bottom: 2.6mm; border-bottom: 0.5pt solid var(--line); z-index: 1; }
+.runner__doc { font-family: var(--serif); font-style: italic; font-size: 9.5pt; line-height: 1; color: var(--ink); }
+.runner__cat { font-weight: 500; font-size: 6.2pt; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); }
+.foot-rule { position: fixed; bottom: 0; left: 33mm; right: 17mm; border-top: 0.5pt solid var(--line); z-index: 1; }
+
+main { position: relative; padding: 21mm 17mm 3mm 33mm; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* En-tête : le bandeau de couleur devient un bandeau beige */
+.mast { position: relative; z-index: 2; margin: -21mm -17mm 11mm -23mm; padding: 13mm 17mm 11mm 23mm; background: var(--beige); }
+.mast__top { display: flex; align-items: baseline; gap: 3mm; padding-bottom: 3.6mm; border-bottom: 0.6pt solid var(--ink); }
+.brand { font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 8.6pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+.brand-sub { font-family: var(--serif); font-style: italic; font-size: 10pt; color: var(--taupe); line-height: 1; }
+.mast__cat { margin-left: auto; font-weight: 500; font-size: 6.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+.mast__body { display: flex; align-items: flex-end; justify-content: space-between; gap: 8mm; padding-top: 17mm; }
+.mast__title { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 33pt; line-height: 0.98; letter-spacing: 0.005em; text-transform: uppercase; color: var(--ink); }
+.mast__title .t1, .mast__title .t2 { display: block; }
+.mast__title .t2 { position: relative; }
+.mast__title .ghost { visibility: hidden; }
+.mast__title svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+.mast__title svg text { font: inherit; letter-spacing: inherit; text-transform: uppercase; fill: none; stroke: var(--ink); stroke-width: 0.9pt; }
+.mast__sub { flex: none; max-width: 64mm; text-align: right; font-family: var(--serif); font-style: italic; font-size: 21pt; line-height: 1.05; color: var(--ink); padding-bottom: 0.6mm; }
+
+/* Corps : intertitres dans la colonne de gauche, texte à droite */
+.sec { display: grid; grid-template-columns: 41mm minmax(0, 1fr); column-gap: 9mm; padding: 4.2mm 0 6.2mm; border-top: 0.5pt solid var(--line); }
+.mast + .sec { border-top: 0; padding-top: 0; }
+.sec--plain { display: block; padding-left: 50mm; }
+.sec__head { grid-column: 1; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 8.6pt; line-height: 1.28; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); padding-top: 0.9mm; hyphens: manual; overflow-wrap: break-word; }
+.sec__body { grid-column: 2; min-width: 0; }
+.sec__body > * + *, .sec--plain > * + * { margin-top: 2.6mm; }
+p { orphans: 2; widows: 2; }
+.sec--keep { break-inside: avoid; }
+p.strong { font-weight: 500; font-size: 10.2pt; line-height: 1.55; color: var(--ink); }
+h3.k { font-family: var(--sans); font-weight: 600; font-size: 6.6pt; line-height: 1.4; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); padding-top: 1.2mm; break-after: avoid; }
+* + h3.k { margin-top: 4.6mm !important; }
+h4 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 13.5pt; line-height: 1.2; color: var(--ink); break-after: avoid; }
+* + h4 { margin-top: 3.8mm !important; }
+ul { list-style: none; }
+li { position: relative; padding-left: 6.4mm; break-inside: avoid; }
+li + li { margin-top: 1.4mm; }
+li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 3.4mm; height: 0.6pt; background: var(--taupe); }
+li.l2 { margin-left: 6.4mm; padding-left: 4.6mm; }
+li.l2::before { top: 0.62em; width: 1.3mm; height: 1.3mm; background: var(--sand); }
+b.lab { font-weight: 600; color: var(--ink); }
+.emoji { font-family: "Apple Color Emoji", sans-serif; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="band" aria-hidden="true"><span>Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing</span></div>
+<div class="foot-rule" aria-hidden="true"></div>
+<main>
+<header class="mast">
+  <div class="mast__top"><span class="brand">Lou Alfred</span><span class="brand-sub">portfolio</span><span class="mast__cat">Projets en entreprise</span></div>
+  <div class="mast__body"><h1 class="mast__title"><span class="t1">Note</span><span class="t2"><span class="ghost" aria-hidden="true">d’intention</span><svg><text x="0" y="0.82em">d’intention</text></svg></span></h1><p class="mast__sub">Bons cadeaux</p></div>
+</header>
+<section class="sec sec--keep"><h2 class="sec__head">Contexte du projet</h2><div class="sec__body"><p>Dans le cadre des fêtes de fin d’année, Jody Priour m’a confié la conception de bons cadeaux personnalisables, destinés à être offerts à ses clients pour Noël. Ces bons représentent une manière chaleureuse d’offrir une expérience photo famille en cadeau.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Objectif créatif</h2><div class="sec__body"><p>L’objectif de cette création est de concevoir un visuel élégant, sobre et doux, en cohérence avec l’univers sensible et naturel de Jody. Il s’agit de transmettre l’émotion et l’intention derrière le cadeau, tout en gardant une ligne graphique cohérente avec son identité professionnelle.</p><p>Je souhaite proposer un design qui évoque les cadeaux avec subtilité, sans tomber dans les codes classiques de Noël. L’idée est de créer une esthétique intemporelle, rassurante et chaleureuse, qui puisse également être adaptée en dehors de la période des fêtes.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Direction artistique choisie</h2><div class="sec__body"><p>Pour répondre à cet objectif, j’ai choisi de travailler autour de couleurs naturelles représentant l’identité de Jody, du bleu marine et du blanc associées à des typographies fines et modernes.</p><p>J’ai intégré un élément graphique discret, un noeud or pour donner du relief tout en conservant une lisibilité parfaite. Le format du bon est pensé pour être à la fois imprimable et utilisable en version numérique, afin de faciliter la diffusion auprès des clients.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Intention humaine</h2><div class="sec__body"><p>Plus qu’un simple support de communication, ces bons cadeaux sont pensés comme des objets à offrir avec le cœur. Ils reflètent à la fois la qualité du travail de Jody et l’attention portée à chaque détail.</p><p>C’est aussi un outil qui s’inscrit dans une stratégie de fidélisation et de visibilité, en valorisant l’émotion et la proximité, piliers de son travail photographique.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Conclusion</h2><div class="sec__body"><p>Ce projet m’a permis de mobiliser mes compétences en design graphique, mise en page sur in design, communication visuelle et adaptation aux besoins réels d’un client.</p><p>Il a été conçu dans un esprit de cohérence, d’esthétique et d’utilité, tout en respectant la vision sensible et humaine que Jody porte à travers son activité.</p></div></section>
+</main>
+</body>
+</html>

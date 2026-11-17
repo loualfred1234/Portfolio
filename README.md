@@ -19,6 +19,8 @@ mentions-legales.html       /mentions-legales (+ confidentialité, cookies)
 css/style.css               Tout le style : couleurs et polices dans :root en haut du fichier
 js/main.js                  Menu mobile, date du jour, animations au scroll, aperçu des rubriques, bandeau « au quotidien »
 img/                        Mettre les vraies photos ici
+docs/<projet>/              Documents de chaque projet (PDF, visuels, vidéo) + apercus/ (vignettes)
+documents-sources/          Sources HTML des documents recomposés dans la DA du site (non publiées)
 vercel.json                 URLs propres, redirections depuis les anciennes URLs Wix, cache
 ```
 
@@ -41,9 +43,21 @@ mets `none` pour le désactiver quand les vraies photos sont en place.
 
 ## Documents des projets
 
-Les boutons « Voir les documents » pointent vers les pages de l'ancien site Wix
-(loualfred1234.wixsite.com/lou-alfred-1/…), qui contiennent les PDF.
-Si le site Wix est supprimé, ces liens ne marcheront plus : il faudra copier les PDF dans le projet.
+Les documents sont hébergés sur le site, dans `docs/<projet>/`. Chaque projet des pages
+« Projets en formation » et « Projets en entreprise » affiche sa grille de documents ; sur ordinateur,
+un clic ouvre le PDF dans une visionneuse sur la page (sur téléphone, dans un nouvel onglet).
+
+Les briefs, notes d'intention, cahiers des charges et le retour d'expérience (les documents qui avaient
+un bandeau de couleur) ont été recomposés dans la DA du site, texte inchangé. Leurs sources sont dans
+`documents-sources/<projet>/<nom>.html`. Pour modifier l'un d'eux : changer le texte dans le fichier HTML,
+puis régénérer le PDF et sa vignette (Google Chrome nécessaire) :
+
+```
+./documents-sources/imprimer.sh cocktail/brief.html
+```
+
+Sans argument, le script régénère les 22 documents. Mettre ensuite à jour la taille affichée
+(« PDF · … Ko ») dans la page du projet.
 
 ## Déployer sur Vercel
 

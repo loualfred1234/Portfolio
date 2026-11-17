@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Cahier des charges — CIPC · Lou Alfred</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,800;125,900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+:root {
+  --ivory: #f4f0e8; --paper: #fbf9f5; --beige: #e6ddcf; --beige-light: #eee7db; --sand: #cdbfa9;
+  --taupe: #6b6155; --ink: #141414; --ink-2: #2a2826; --line: rgba(20, 20, 20, 0.16);
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+/* Page A4 ivoire ; seule la marge du bas existe (pied de page + numéro) */
+@page {
+  size: A4;
+  margin: 0 0 16mm 0;
+  background: #f4f0e8;
+  @bottom-left { content: "Lou Alfred — portfolio"; font-family: "Inter"; font-weight: 500; font-size: 6.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: #6b6155; vertical-align: top; padding: 4.4mm 0 0 33mm; }
+  @bottom-right { content: counter(page, decimal-leading-zero) " / " counter(pages, decimal-leading-zero); font-family: "Archivo"; font-stretch: 125%; font-weight: 800; font-size: 7pt; letter-spacing: 0.08em; color: #141414; vertical-align: top; padding: 4.1mm 17mm 0 0; }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html { background: var(--ivory); }
+body { font-family: var(--sans); font-size: 9.6pt; line-height: 1.62; color: var(--ink-2); font-kerning: normal; text-rendering: geometricPrecision; }
+
+/* Éléments répétés sur chaque page */
+.band { position: fixed; top: 0; bottom: 0; left: 0; width: 10mm; background: var(--ink); overflow: hidden; z-index: 3; }
+.band span { position: absolute; left: 0; top: 100%; transform-origin: 0 0; transform: rotate(-90deg) translate(13mm, 3.95mm); white-space: nowrap;
+  font-family: var(--sans); font-weight: 600; font-size: 5.8pt; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ivory); }
+.runner { position: fixed; top: 0; left: 33mm; right: 17mm; height: 17mm; display: flex; align-items: flex-end; justify-content: space-between; gap: 8mm; padding-bottom: 2.6mm; border-bottom: 0.5pt solid var(--line); z-index: 1; }
+.runner__doc { font-family: var(--serif); font-style: italic; font-size: 9.5pt; line-height: 1; color: var(--ink); }
+.runner__cat { font-weight: 500; font-size: 6.2pt; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); }
+.foot-rule { position: fixed; bottom: 0; left: 33mm; right: 17mm; border-top: 0.5pt solid var(--line); z-index: 1; }
+
+main { position: relative; padding: 21mm 17mm 3mm 33mm; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* En-tête : le bandeau de couleur devient un bandeau beige */
+.mast { position: relative; z-index: 2; margin: -21mm -17mm 11mm -23mm; padding: 13mm 17mm 11mm 23mm; background: var(--beige); }
+.mast__top { display: flex; align-items: baseline; gap: 3mm; padding-bottom: 3.6mm; border-bottom: 0.6pt solid var(--ink); }
+.brand { font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 8.6pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+.brand-sub { font-family: var(--serif); font-style: italic; font-size: 10pt; color: var(--taupe); line-height: 1; }
+.mast__cat { margin-left: auto; font-weight: 500; font-size: 6.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+.mast__body { display: flex; align-items: flex-end; justify-content: space-between; gap: 8mm; padding-top: 17mm; }
+.mast__title { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 33pt; line-height: 0.98; letter-spacing: 0.005em; text-transform: uppercase; color: var(--ink); }
+.mast__title .t1, .mast__title .t2 { display: block; }
+.mast__title .t2 { position: relative; }
+.mast__title .ghost { visibility: hidden; }
+.mast__title svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+.mast__title svg text { font: inherit; letter-spacing: inherit; text-transform: uppercase; fill: none; stroke: var(--ink); stroke-width: 0.9pt; }
+.mast__sub { flex: none; max-width: 64mm; text-align: right; font-family: var(--serif); font-style: italic; font-size: 21pt; line-height: 1.05; color: var(--ink); padding-bottom: 0.6mm; }
+
+/* Corps : intertitres dans la colonne de gauche, texte à droite */
+.sec { display: grid; grid-template-columns: 41mm minmax(0, 1fr); column-gap: 9mm; padding: 4.2mm 0 6.2mm; border-top: 0.5pt solid var(--line); }
+.mast + .sec { border-top: 0; padding-top: 0; }
+.sec--plain { display: block; padding-left: 50mm; }
+.sec__head { grid-column: 1; font-family: var(--display); font-stretch: 125%; font-weight: 800; font-size: 8.6pt; line-height: 1.28; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); padding-top: 0.9mm; hyphens: manual; overflow-wrap: break-word; }
+.sec__body { grid-column: 2; min-width: 0; }
+.sec__body > * + *, .sec--plain > * + * { margin-top: 2.6mm; }
+p { orphans: 2; widows: 2; }
+.sec--keep { break-inside: avoid; }
+p.strong { font-weight: 500; font-size: 10.2pt; line-height: 1.55; color: var(--ink); }
+h3.k { font-family: var(--sans); font-weight: 600; font-size: 6.6pt; line-height: 1.4; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); padding-top: 1.2mm; break-after: avoid; }
+* + h3.k { margin-top: 4.6mm !important; }
+h4 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 13.5pt; line-height: 1.2; color: var(--ink); break-after: avoid; }
+* + h4 { margin-top: 3.8mm !important; }
+ul { list-style: none; }
+li { position: relative; padding-left: 6.4mm; break-inside: avoid; }
+li + li { margin-top: 1.4mm; }
+li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 3.4mm; height: 0.6pt; background: var(--taupe); }
+li.l2 { margin-left: 6.4mm; padding-left: 4.6mm; }
+li.l2::before { top: 0.62em; width: 1.3mm; height: 1.3mm; background: var(--sand); }
+b.lab { font-weight: 600; color: var(--ink); }
+.emoji { font-family: "Apple Color Emoji", sans-serif; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="band" aria-hidden="true"><span>Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing · Communication · Événementiel · Marketing</span></div>
+<div class="foot-rule" aria-hidden="true"></div>
+<main>
+<header class="mast">
+  <div class="mast__top"><span class="brand">Lou Alfred</span><span class="brand-sub">portfolio</span><span class="mast__cat">Projets en formation</span></div>
+  <div class="mast__body"><h1 class="mast__title"><span class="t1">Cahier des</span><span class="t2"><span class="ghost" aria-hidden="true">charges</span><svg><text x="0" y="0.82em">charges</text></svg></span></h1><p class="mast__sub">CIPC</p></div>
+</header>
+<section class="sec"><div class="sec__body"><p><b class="lab">Projet</b> : Création d’une identité visuelle pour le CIPC</p><p><b class="lab">Commanditaire pédagogique</b> : Club Immobilier &amp; Patrimoine Caennais</p><p><b class="lab">Contexte</b> : Projet mené en cours dans le cadre du BTS Communication</p><p><b class="lab">Période</b> : De janvier à fin mars 2024</p></div></section>
+<section class="sec"><h2 class="sec__head">Contexte</h2><div class="sec__body"><p>Le Club Immobilier &amp; Patrimoine Caennais (CIPC) est une association professionnelle créée en 2022 par Maxime Gaillard, entrepreneur basé à Caen (Normandie). Ce club réunit régulièrement des dirigeants et professionnels des secteurs de l’immobilier, du patrimoine et du bâtiment, dans une logique de réseau collaboratif, bienveillant et qualitatif.</p><p>Le club se positionne comme une association BtoB, centrée sur l’échange entre entreprises membres, et non sur la prospection externe ou grand public. L’accès au club est sélectif : chaque candidature fait l’objet d’un entretien pour garantir une cohérence de valeurs et de compétences entre les membres.</p><p>Aujourd’hui, bien que le club soit actif sur LinkedIn, il ne dispose pas encore d’une identité visuelle forte et identifiable. Pour accompagner son développement et renforcer sa crédibilité, le CIPC souhaite disposer d’un logo professionnel et d’une charte graphique cohérente, qui puissent être déclinés sur l’ensemble de ses supports de communication (réseaux sociaux, documents internes, présentations, etc.).</p></div></section>
+<section class="sec"><h2 class="sec__head">Objectifs</h2><div class="sec__body"><p>L’objectif du projet est de concevoir une identité visuelle complète incluant :</p><ul><li>Un logo professionnel véhiculant les valeurs du club</li><li>Une charte graphique claire et sobre, incluant :</li><li class="l2">Palette de couleurs</li><li class="l2">Typographies</li><li class="l2">Style graphique et iconographique</li><li class="l2">Règles d’application (usages, interdits, déclinaisons)</li></ul><p>L’ensemble devra permettre au club de :</p><ul><li>Renforcer sa notoriété auprès des entreprises ciblées</li><li>Affirmer son positionnement distinctif vis-à-vis des autres réseaux (BNI, Club14)</li><li>Créer une reconnaissance immédiate de son nom et de son univers</li></ul></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Cible visée</h2><div class="sec__body"><p>Le CIPC s’adresse exclusivement à un public professionnel et qualifié, à savoir :</p><ul><li>Des entreprises des secteurs immobilier, patrimoine, bâtiment</li><li>Des dirigeants ou cadres souhaitant rejoindre un réseau qualitatif, sélectif et professionnel</li><li>Des profils recherchant l’échange de compétences, le développement d’affaires BtoB, et une ambiance de travail fondée sur la confiance</li></ul></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Valeurs à transmettre</h2><div class="sec__body"><p>L’identité visuelle devra refléter les valeurs fondatrices du club :</p><ul><li>Partage</li><li>Échange</li><li>Bienveillance</li><li>Confiance</li><li>Professionnalisme</li></ul></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Attentes graphiques</h2><div class="sec__body"><ul><li><b class="lab">Logotype</b> : doit évoquer l’immobilier / patrimoine / réseau professionnel</li><li><b class="lab">Couleurs</b> : Sobres, élégantes ( neutres, bleu, gris...), pas clinquante</li><li><b class="lab">Typographies</b> : Modernes, simples, sérieuses</li><li><b class="lab">Style général</b> : Professionnel, cohérent, intemporel</li><li><b class="lab">Déclinaisons</b> : Logo principal, logo secondaire, monochrome, sur fond clair / foncé</li></ul><p>Le logo devra être lisible, identifiable rapidement, et facilement déclinable sur tous types de supports : PDF, e-mail, réseaux sociaux, présentations PowerPoint, documents imprimés.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Concurrence</h2><div class="sec__body"><p>Les deux principaux réseaux concurrents sont :</p><ul><li>BNI (Business Network International)</li><li>Club 14</li></ul><p>Toutefois, ces concurrents ont un fonctionnement plus ouvert et généraliste, sans sélection à l’entrée ni cotisation équivalente.</p><p>Le CIPC se distingue par :</p><ul><li>Son processus de sélection des membres</li><li>Son positionnement qualitatif</li><li>Sa cotisation annuelle de 500 €</li></ul><p>Le logo et l'identité visuelle devront donc exprimer ce positionnement haut de gamme, tout en restant accessibles et humains.</p></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Livrables attendus</h2><div class="sec__body"><ul><li>Un logo vectorisé (formats .AI / .PDF / .PNG / .JPEG / .SVG)</li><li>Une charte graphique complète au format PDF, contenant :</li><li>Palette colorimétrique</li><li>Typographies et recommandations d’usage</li><li>Exemples d’application du logo</li><li>Versions autorisées / non autorisées</li><li>Une présentation visuelle de l’identité</li></ul></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Livrables attendus</h2><div class="sec__body"><ul><li>Le logo ne doit pas contenir d’éléments trop décoratifs</li><li>Éviter toute surcharge</li><li>L’univers doit rester corporate, moderne et sobre</li><li>L’identité devra pouvoir évoluer ou s'étendre (ex : futur développement en dehors de la Normandie)</li></ul></div></section>
+<section class="sec sec--keep"><h2 class="sec__head">Délai de réalisation</h2><div class="sec__body"><p class="strong">Le livrable final est attendu avant fin Mars 2024.</p><p class="strong">Des étapes de validation intermédiaires pourront être organisées avec l’équipe du CIPC pour ajuster le travail en cours.</p></div></section>
+</main>
+</body>
+</html>
