@@ -6,11 +6,11 @@
   <title>Mentions légales — Lou Alfred</title>
   <meta name="description" content="Mentions légales, politique de confidentialité et cookies du portfolio de Lou Alfred.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f4f0e8">
+  <meta name="theme-color" content="#f6f2ea">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Inter:wght@300;400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="js/main.js" defer></script>
@@ -19,11 +19,12 @@
   <a class="skip" href="#main">Aller au contenu</a>
 
   <header class="site-header" data-header>
-    <a href="/" class="brand" aria-label="Lou Alfred — accueil">Lou Alfred <small>portfolio</small></a>
+    <a href="/" class="brand">Lou Alfred</a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <a href="/">Accueil</a>
       <a href="/projets-en-formations">Projets formation</a>
       <a href="/projets-en-entreprise">Projets entreprise</a>
+      <a href="/projets-perso">Projets perso</a>
       <a href="/a-propos">À propos</a>
       <a href="/#contact" class="nav__cta">Contact</a>
       <p class="nav__foot">lou.alfred@yahoo.com — Caen</p>
@@ -34,15 +35,16 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <div class="page-hero__meta eyebrow"><span>Informations</span><span>Mise à jour : <span data-year>2026</span></span></div>
-        <h1 class="display">
+        <div class="page-hero__meta kicker"><span>Informations</span><span>Mise à jour : <span data-year>2026</span></span></div>
+        <h1>
           <span class="line"><span>Mentions</span></span>
-          <span class="line"><span class="serif">légales</span></span>
+          <span class="line"><span><em>légales</em></span></span>
         </h1>
+        <div class="rule-double" aria-hidden="true"></div>
       </div>
     </section>
 
-    <div class="container section--tight" style="padding-top:0">
+    <div class="container" style="padding-bottom: clamp(80px, 10vw, 140px)">
       <div class="legal">
         <h2 id="editeur">Éditeur du site</h2>
         <p>Ce site est un portfolio personnel édité par Lou Alfred, particulier.<br>
@@ -67,26 +69,29 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="footer__top">
-        <p class="footer__pitch">Communication, événementiel &amp; création de contenu.</p>
+      <p class="footer__mast">Lou Alfred</p>
+      <p class="footer__tag kicker">Communication · Événementiel · Marketing</p>
+      <div class="rule-double" aria-hidden="true"></div>
+      <div class="footer__cols">
+        <p class="footer__pitch">Le portfolio de Lou Alfred — communication, marketing &amp; événementiel.</p>
         <div>
-          <h4>Navigation</h4>
-          <ul><li><a href="/">Accueil</a></li><li><a href="/projets-en-formations">Projets formation</a></li><li><a href="/projets-en-entreprise">Projets entreprise</a></li><li><a href="/a-propos">À propos</a></li></ul>
+          <p class="kicker">Rubriques</p>
+          <ul><li><a href="/projets-en-formations">Projets en formation</a></li><li><a href="/projets-en-entreprise">Projets en entreprise</a></li><li><a href="/projets-perso">Projets perso</a></li><li><a href="/a-propos">À propos</a></li></ul>
         </div>
         <div>
-          <h4>Contact</h4>
+          <p class="kicker">Contact</p>
           <ul><li><a href="mailto:lou.alfred@yahoo.com">E-mail</a></li><li><a href="tel:+33604096314">Téléphone</a></li><li><a href="#" rel="noopener">LinkedIn</a></li></ul>
         </div>
         <div>
-          <h4>Informations</h4>
+          <p class="kicker">Informations</p>
           <ul><li><a href="/mentions-legales">Mentions légales</a></li><li><a href="/mentions-legales#confidentialite">Confidentialité</a></li><li><a href="/mentions-legales#cookies">Cookies</a></li></ul>
         </div>
       </div>
-    </div>
-    <p class="footer__mast" aria-hidden="true">Lou Alfred</p>
-    <div class="container footer__bottom">
-      <span>© <span data-year>2026</span> Lou Alfred</span>
-      <span>Caen, France</span>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Lou Alfred</span>
+        <span>Caen, France</span>
+        <a href="#main">Retour en haut ↑</a>
+      </div>
     </div>
   </footer>
 </body>
