@@ -19,11 +19,11 @@
   --line-light: rgba(244, 240, 232, 0.18);
   --stroke: var(--ink);
 
-  /* Police des titres : Archivo étendu.
-     --display-weight : 550 = plus léger, 750 = plus gras.
+  /* Police des titres : Archivo étendu extra-gras (choix « D »).
+     --display-weight : 650 = semi-gras, 850 = extra-gras, 900 = noir.
      --display-stretch : 100% = largeur normale, 125% = étendue. */
   --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --display-weight: 650;
+  --display-weight: 850;
   --display-stretch: 125%;
   --serif: "Instrument Serif", "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
