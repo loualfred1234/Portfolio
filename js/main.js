@@ -162,6 +162,37 @@
     box.addEventListener("close", () => { document.body.classList.remove("viewer-open"); img.removeAttribute("src"); });
   }
 
+  // Carrousel des galeries : flèches, et défilement doux d'une photo toutes les 4 s
+  // (en pause au survol, arrêté dès qu'on s'en sert, désactivé si les animations sont réduites)
+  document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+    const track = gallery.querySelector(".gallery__track");
+    if (!track) return;
+    const stepSize = () => {
+      const item = track.querySelector("li");
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+      return item ? item.getBoundingClientRect().width + gap : 240;
+    };
+    const go = (dir) => {
+      const end = track.scrollWidth - track.clientWidth - 2;
+      if (dir > 0 && track.scrollLeft >= end) track.scrollTo({ left: 0 });
+      else if (dir < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth });
+      else track.scrollBy({ left: dir * stepSize() });
+    };
+    let timer = null;
+    let stopped = reduce;
+    let hovering = false;
+    const stop = () => { stopped = true; clearInterval(timer); timer = null; };
+    gallery.querySelectorAll(".gallery__arrow").forEach((btn) => btn.addEventListener("click", () => { stop(); go(Number(btn.dataset.dir)); }));
+    ["pointerdown", "wheel", "touchstart", "keydown"].forEach((type) => track.addEventListener(type, stop, { passive: true }));
+    track.addEventListener("mouseenter", () => { hovering = true; });
+    track.addEventListener("mouseleave", () => { hovering = false; });
+    const tick = () => { if (!hovering && !document.querySelector("dialog[open]")) go(1); };
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !stopped && !timer) timer = setInterval(tick, 4000);
+      if (!entry.isIntersecting && timer) { clearInterval(timer); timer = null; }
+    }).observe(track);
+  });
+
   // Bandeau « Au quotidien » : une phrase à la fois, qui glisse vers le haut
   const ticker = document.querySelector("[data-ticker]");
   if (ticker && !reduce) {
