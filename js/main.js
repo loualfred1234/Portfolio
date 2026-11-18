@@ -193,6 +193,27 @@
     }).observe(track);
   });
 
+  // Carrousel Instagram : un visuel à la fois (flèches, glissé ou clavier), compteur « 01 / 04 »
+  document.querySelectorAll("[data-slider]").forEach((slider) => {
+    const track = slider.querySelector(".post-slider__track");
+    const count = slider.querySelector(".post-slider__count");
+    const total = track.children.length;
+    let index = 0;
+    let settle = 0;
+    const show = (i) => { count.textContent = `${pad(i + 1)} / ${pad(total)}`; };
+    // Se recaler sur le visuel réellement affiché (après un glissé, ou si un défilement n'a pas eu lieu)
+    const sync = () => { index = Math.round(track.scrollLeft / track.clientWidth); show(index); };
+    const later = (ms) => { clearTimeout(settle); settle = setTimeout(sync, ms); };
+    const go = (i) => {
+      index = (i + total) % total;
+      show(index);
+      track.scrollTo({ left: index * track.clientWidth });
+      later(1000);
+    };
+    slider.querySelectorAll("[data-dir]").forEach((btn) => btn.addEventListener("click", () => go(index + Number(btn.dataset.dir))));
+    track.addEventListener("scroll", () => later(120), { passive: true });
+  });
+
   // Bandeau « Au quotidien » : une phrase à la fois, qui glisse vers le haut
   const ticker = document.querySelector("[data-ticker]");
   if (ticker && !reduce) {

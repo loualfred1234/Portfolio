@@ -12,13 +12,13 @@ et `--display-stretch` (100% = largeur normale, 125% = étendue).
 index.html                  Accueil : la une, l'édito, mes projets, « au quotidien », en chiffres, contact
 projets-en-formations.html  /projets-en-formations  (chapitre 01)
 projets-en-entreprise.html  /projets-en-entreprise  (chapitre 02)
-projets-perso.html          /projets-perso          (chapitre 03 — projets provisoires à remplacer)
+projets-perso.html          /projets-perso          (chapitre 03)
 a-propos.html               /a-propos  (l'ancienne URL /about-9 y est redirigée)
 mentions-legales.html       /mentions-legales (+ confidentialité, cookies)
 404.html
 css/style.css               Tout le style : couleurs et polices dans :root en haut du fichier
-js/main.js                  Menu mobile, date du jour, animations au scroll, aperçu des rubriques, bandeau « au quotidien »
-img/                        Mettre les vraies photos ici
+js/main.js                  Menu mobile, animations au scroll, visionneuses (documents, photos), carrousels, bandeau « au quotidien »
+img/                        Photos du site
 docs/<projet>/              Documents de chaque projet (PDF, visuels, vidéo) + apercus/ (vignettes)
 documents-sources/          Sources HTML des documents recomposés dans la DA du site (non publiées)
 vercel.json                 URLs propres, redirections depuis les anciennes URLs Wix, cache
@@ -34,12 +34,11 @@ perl serve.pl
 
 Puis ouvrir http://localhost:4321 dans le navigateur. `Ctrl + C` pour arrêter.
 
-## Remplacer les photos
+## Changer une photo
 
-Les photos sont provisoires (picsum.photos). Dépose tes images dans `img/`, puis remplace
-chaque `src="https://picsum.photos/..."` par `src="img/mon-image.jpg"`.
-Le filtre doux appliqué aux photos se règle dans `css/style.css` avec `--photo-filter` :
-mets `none` pour le désactiver quand les vraies photos sont en place.
+Dépose la nouvelle image dans `img/` sous un nouveau nom de fichier (les fichiers de `img/` sont
+mis en cache longtemps par le navigateur), puis mets à jour le `src` dans la page.
+Le filtre doux `--photo-filter` (dans `css/style.css`) ne s'applique pas aux photos marquées `media--real`.
 
 ## Documents des projets
 

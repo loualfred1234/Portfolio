@@ -466,7 +466,10 @@ figcaption.caption { margin-top: 10px; }
 .project__body p { max-width: 52ch; color: var(--ink-2); font-weight: 300; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 22px 28px; }
 .tags li { border: 1px solid var(--line-strong); padding: 6px 12px; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.placeholder-note { display: inline-block; padding: 4px 10px; border: 1px dashed var(--line-strong); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); }
+/* Site momentanément hors ligne : étiquette avec un petit carré qui clignote doucement */
+.status { display: inline-block; padding: 4px 10px; border: 1px solid var(--ink); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+.status::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 9px; vertical-align: 0.12em; background: currentColor; animation: statusBlink 2.4s var(--ease-io) infinite; }
+@keyframes statusBlink { 50% { opacity: 0.15; } }
 
 /* Visuels réels des projets (sans filtre) */
 .media--real img { filter: none; }
@@ -531,6 +534,24 @@ figcaption.caption { margin-top: 10px; }
 .gallery__item { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--beige); cursor: zoom-in; }
 .gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .gallery__item:hover img, .gallery__item:focus-visible img { transform: scale(1.05); }
+
+/* Publications Instagram (L'Atelier Coiffure) : le carrousel se feuillette dans son cadre, sur fond beige */
+.post-slider { --w: min(100%, clamp(260px, 25vw, 360px)); display: grid; justify-items: center; gap: 16px; padding: clamp(24px, 3.4vw, 44px) clamp(16px, 3vw, 40px) clamp(18px, 2.4vw, 30px); background: var(--beige-light); }
+.post-slider__frame { width: var(--w); aspect-ratio: 4 / 5; overflow: hidden; background: var(--beige); box-shadow: 0 8px 22px rgba(20, 20, 20, 0.18); }
+.post-slider__track { display: flex; height: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+.post-slider__track::-webkit-scrollbar { display: none; }
+.post-slider__track:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.post-slider__track li { flex: 0 0 100%; scroll-snap-align: start; }
+.post-slider__track a { display: block; height: 100%; cursor: zoom-in; }
+.post-slider__track img { width: 100%; height: 100%; object-fit: cover; }
+.post-slider__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: var(--w); }
+.post-slider__nav { display: flex; align-items: center; gap: 8px; }
+.post-slider__count { margin-right: 8px; font-family: var(--display); font-stretch: var(--display-stretch); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; white-space: nowrap; }
+@media (max-width: 860px) { .post-slider { --w: min(100%, 340px); } }
+.posts__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); max-width: 920px; }
+.post__thumb { aspect-ratio: 4 / 5; padding: 0; cursor: zoom-in; }
+.post__thumb img { width: 100%; height: 100%; object-fit: cover; box-shadow: none; }
+@media (max-width: 520px) { .posts__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Visionneuse photo : plein écran sombre, photo précédente / suivante */
 .lightbox { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: clamp(60px, 7vw, 88px) clamp(16px, 7vw, 96px); border: 0; background: rgba(20, 20, 20, 0.95); color: var(--ivory); overflow: hidden; }
@@ -663,7 +684,7 @@ figcaption.caption { margin-top: 10px; }
 .js a:hover .reveal-img.is-in img { transform: scale(1.04); }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, .gallery__track, .post-slider__track { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
   .marquee__track, .side-band__track { animation: none !important; }
   .js .reveal, .js .reveal-img { opacity: 1; transform: none; clip-path: none; }
