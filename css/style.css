@@ -535,22 +535,41 @@ figcaption.caption { margin-top: 10px; }
 .gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .gallery__item:hover img, .gallery__item:focus-visible img { transform: scale(1.05); }
 
-/* Publications Instagram (L'Atelier Coiffure) : le carrousel se feuillette dans son cadre, sur fond beige */
-.post-slider { --w: min(100%, clamp(260px, 25vw, 360px)); display: grid; justify-items: center; gap: 16px; padding: clamp(24px, 3.4vw, 44px) clamp(16px, 3vw, 40px) clamp(18px, 2.4vw, 30px); background: var(--beige-light); }
-.post-slider__frame { width: var(--w); aspect-ratio: 4 / 5; overflow: hidden; background: var(--beige); box-shadow: 0 8px 22px rgba(20, 20, 20, 0.18); }
-.post-slider__track { display: flex; height: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+/* Publications Instagram (L'Atelier Coiffure) */
+/* Visuel principal : cinq publications posées les unes sur les autres, qui s'ouvrent en éventail à l'apparition */
+.post-stack { position: relative; aspect-ratio: 5 / 4; overflow: hidden; background: var(--beige-light); }
+.post-stack img {
+  position: absolute; left: var(--l); top: var(--t); z-index: var(--z); width: var(--w); height: auto; aspect-ratio: 4 / 5;
+  object-fit: cover; border: clamp(3px, 0.4vw, 6px) solid var(--paper); box-shadow: 0 14px 32px rgba(20, 20, 20, 0.24);
+  transition: translate 1.4s var(--ease);
+}
+.post-stack img:nth-child(1) { --l: 4%; --t: 18%; --w: 25%; --z: 1; --dx: 134%; --hx: -12%; }
+.post-stack img:nth-child(2) { --l: 17%; --t: 23%; --w: 29%; --z: 2; --dx: 64%; --hx: -6%; }
+.post-stack img:nth-child(3) { --l: 33.5%; --t: 28%; --w: 33%; --z: 3; --dx: 0%; --hx: 0%; --hy: -3%; }
+.post-stack img:nth-child(4) { --l: 54%; --t: 23%; --w: 29%; --z: 2; --dx: -64%; --hx: 6%; }
+.post-stack img:nth-child(5) { --l: 71%; --t: 18%; --w: 25%; --z: 1; --dx: -134%; --hx: 12%; }
+.js .post-stack.reveal-img img { transition: transform 1.8s var(--ease), translate 1.4s var(--ease); }
+.js .post-stack.reveal-img:not(.is-in) img { translate: var(--dx) 0; }
+@media (hover: hover) { .post-stack:hover img { translate: var(--hx) var(--hy, 0); } }
+
+/* Publications : une vignette par post ; le carrousel se feuillette dans la sienne */
+.posts__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); max-width: 1160px; }
+.post__thumb { aspect-ratio: 4 / 5; padding: 0; cursor: zoom-in; }
+.post__thumb img { width: 100%; height: 100%; object-fit: cover; box-shadow: none; }
+.post-slider__frame { display: block; }
+.post-slider__track { display: flex; width: 100%; height: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
 .post-slider__track::-webkit-scrollbar { display: none; }
 .post-slider__track:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 .post-slider__track li { flex: 0 0 100%; scroll-snap-align: start; }
-.post-slider__track a { display: block; height: 100%; cursor: zoom-in; }
-.post-slider__track img { width: 100%; height: 100%; object-fit: cover; }
-.post-slider__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: var(--w); }
-.post-slider__nav { display: flex; align-items: center; gap: 8px; }
-.post-slider__count { margin-right: 8px; font-family: var(--display); font-stretch: var(--display-stretch); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; white-space: nowrap; }
-@media (max-width: 860px) { .post-slider { --w: min(100%, 340px); } }
-.posts__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); max-width: 920px; }
-.post__thumb { aspect-ratio: 4 / 5; padding: 0; cursor: zoom-in; }
-.post__thumb img { width: 100%; height: 100%; object-fit: cover; box-shadow: none; }
+.post-slider__track a { display: block; height: 100%; }
+.post-slider__icon { position: absolute; top: 8px; right: 8px; z-index: 2; width: 18px; height: 18px; color: var(--paper); filter: drop-shadow(0 1px 2px rgba(20, 20, 20, 0.55)); pointer-events: none; }
+.post-slider__arrow { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 30px; height: 30px; translate: 0 -50%; background: rgba(251, 249, 245, 0.92); font-size: 0.85rem; line-height: 1; opacity: 0; transition: opacity 0.3s, background-color 0.3s, color 0.3s; }
+.post-slider__arrow[data-dir="-1"] { left: 8px; }
+.post-slider__arrow[data-dir="1"] { right: 8px; }
+.post-slider__frame:hover .post-slider__arrow, .post-slider__arrow:focus-visible { opacity: 1; }
+.post-slider__arrow:hover { background: var(--ink); color: var(--ivory); }
+@media (hover: none) { .post-slider__arrow { display: none; } }
+@media (max-width: 860px) { .posts__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .posts__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Visionneuse photo : plein écran sombre, photo précédente / suivante */
