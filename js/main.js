@@ -109,6 +109,59 @@
     }));
   }
 
+  // Galeries photo : un clic agrandit la photo ; flèches, boutons ou glissé pour passer à la suivante
+  const photoLinks = [...document.querySelectorAll("a[data-photo]")];
+  if (photoLinks.length && "HTMLDialogElement" in window) {
+    const box = document.createElement("dialog");
+    box.className = "lightbox";
+    box.setAttribute("aria-label", "Photo agrandie");
+    box.innerHTML =
+      '<button type="button" class="lightbox__close" aria-label="Fermer" autofocus>✕</button>' +
+      '<p class="lightbox__count"></p>' +
+      '<figure class="lightbox__fig"><img class="lightbox__img" alt=""><figcaption class="lightbox__cap"></figcaption></figure>' +
+      '<button type="button" class="lightbox__btn lightbox__prev" aria-label="Photo précédente">←</button>' +
+      '<button type="button" class="lightbox__btn lightbox__next" aria-label="Photo suivante">→</button>';
+    document.body.append(box);
+    const img = box.querySelector(".lightbox__img");
+    const cap = box.querySelector(".lightbox__cap");
+    const count = box.querySelector(".lightbox__count");
+    let group = [];
+    let index = 0;
+    const show = (k) => {
+      index = (k + group.length) % group.length;
+      const thumb = group[index].querySelector("img");
+      img.src = group[index].href;
+      img.alt = thumb ? thumb.alt : "";
+      cap.textContent = img.alt;
+      count.textContent = `${pad(index + 1)} / ${pad(group.length)}`;
+    };
+    photoLinks.forEach((link) => link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const gallery = link.closest("[data-gallery]");
+      group = gallery ? [...gallery.querySelectorAll("a[data-photo]")] : [link];
+      show(group.indexOf(link));
+      box.showModal();
+      document.body.classList.add("viewer-open");
+    }));
+    box.querySelector(".lightbox__close").addEventListener("click", () => box.close());
+    box.querySelector(".lightbox__prev").addEventListener("click", () => show(index - 1));
+    box.querySelector(".lightbox__next").addEventListener("click", () => show(index + 1));
+    box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(index - 1);
+      if (e.key === "ArrowRight") show(index + 1);
+    });
+    let startX = null;
+    box.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", (e) => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    });
+    box.addEventListener("close", () => { document.body.classList.remove("viewer-open"); img.removeAttribute("src"); });
+  }
+
   // Bandeau « Au quotidien » : une phrase à la fois, qui glisse vers le haut
   const ticker = document.querySelector("[data-ticker]");
   if (ticker && !reduce) {

@@ -515,6 +515,35 @@ figcaption.caption { margin-top: 10px; }
 .viewer__close:hover { background: var(--ink); color: var(--ivory); }
 .viewer__frame { flex: 1; width: 100%; border: 0; background: #525659; }
 .viewer-open { overflow: hidden; }
+
+/* Galerie photo d'un projet (Photographie culinaire) */
+.gallery__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 18px); }
+.gallery__item { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--beige); cursor: zoom-in; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.gallery__item:hover img, .gallery__item:focus-visible img { transform: scale(1.05); }
+@media (max-width: 900px) { .gallery__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .gallery__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Visionneuse photo : plein écran sombre, photo précédente / suivante */
+.lightbox { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: clamp(60px, 7vw, 88px) clamp(16px, 7vw, 96px); border: 0; background: rgba(20, 20, 20, 0.95); color: var(--ivory); overflow: hidden; }
+.lightbox[open] { display: grid; place-items: center; }
+.lightbox::backdrop { background: transparent; }
+.lightbox__fig { display: grid; justify-items: center; gap: 14px; max-width: 100%; }
+.lightbox__img { max-width: 100%; max-height: calc(100svh - 190px); width: auto; height: auto; }
+.lightbox__cap { font-family: var(--serif); font-style: italic; font-size: 1.05rem; line-height: 1.3; color: var(--sand); text-align: center; }
+.lightbox__count { position: absolute; left: clamp(16px, 2.4vw, 32px); top: clamp(22px, 2.6vw, 34px); font-family: var(--display); font-stretch: var(--display-stretch); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.08em; }
+.lightbox__btn, .lightbox__close { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(244, 240, 232, 0.35); color: var(--ivory); font-size: 1.15rem; line-height: 1; transition: background-color 0.3s, color 0.3s; }
+.lightbox__btn:hover, .lightbox__close:hover { background: var(--ivory); color: var(--ink); }
+.lightbox__close { top: clamp(10px, 1.8vw, 22px); right: clamp(10px, 1.8vw, 22px); }
+.lightbox__prev { left: clamp(10px, 1.8vw, 22px); top: 50%; translate: 0 -50%; }
+.lightbox__next { right: clamp(10px, 1.8vw, 22px); top: 50%; translate: 0 -50%; }
+@media (max-width: 700px) {
+  .lightbox { padding: 64px 12px 84px; }
+  .lightbox__prev, .lightbox__next { top: auto; bottom: 16px; translate: none; }
+  .lightbox__prev { left: calc(50% - 56px); }
+  .lightbox__next { right: calc(50% - 56px); }
+  .lightbox__img { max-height: calc(100svh - 210px); }
+}
 @media (max-width: 860px) {
   .project__media, .project__body,
   .project:nth-child(even) .project__media, .project:nth-child(even) .project__body { grid-column: 1 / -1; order: 0; }
