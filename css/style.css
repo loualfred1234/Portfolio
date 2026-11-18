@@ -478,6 +478,7 @@ figcaption.caption { margin-top: 10px; }
 .media--doc img { object-fit: contain; padding: clamp(18px, 3.4vw, 44px); filter: drop-shadow(0 8px 22px rgba(20, 20, 20, 0.18)); }
 .media--video { background: var(--ink); }
 .media--video video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.project__media .media--wide { aspect-ratio: 16 / 9; }
 
 /* Documents de chaque projet */
 .docs { grid-column: 1 / -1; order: 3; margin-top: clamp(4px, 1vw, 12px); padding-top: 22px; border-top: 1px solid var(--line); }
