@@ -18,6 +18,7 @@
   --line-strong: rgba(20, 20, 20, 0.28);
   --line-light: rgba(244, 240, 232, 0.18);
   --stroke: var(--ink);
+  --alert: #d42a1e;   /* rouge vif, uniquement pour signaler un site en maintenance */
 
   /* Police des titres : Archivo étendu extra-gras (choix « D »).
      --display-weight : 650 = semi-gras, 850 = extra-gras, 900 = noir.
@@ -467,8 +468,10 @@ figcaption.caption { margin-top: 10px; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 22px 28px; }
 .tags li { border: 1px solid var(--line-strong); padding: 6px 12px; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; }
 /* Site momentanément hors ligne : étiquette avec un petit carré qui clignote doucement */
-.status { display: inline-block; padding: 4px 10px; border: 1px solid var(--ink); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
-.status::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 9px; vertical-align: 0.12em; background: currentColor; animation: statusBlink 2.4s var(--ease-io) infinite; }
+.status { display: inline-block; padding: 6px 12px; background: var(--alert); color: #fff; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.media__flag { position: absolute; inset: 0 0 auto 0; z-index: 2; padding: 12px 16px; background: var(--alert); color: #fff; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; }
+.status::before, .media__flag::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 10px; vertical-align: 0.1em; background: currentColor; animation: statusBlink 2.4s var(--ease-io) infinite; }
+.toc .c--alert { color: var(--alert); font-weight: 600; }
 @keyframes statusBlink { 50% { opacity: 0.15; } }
 
 /* Visuels réels des projets (sans filtre) */
@@ -480,6 +483,14 @@ figcaption.caption { margin-top: 10px; }
 .media--video { background: var(--ink); }
 .media--video video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .project__media .media--wide { aspect-ratio: 16 / 9; }
+/* Logotype présenté comme une planche de marque : en couleur sur blanc, en blanc sur bleu marine */
+.logo-board { position: relative; display: grid; grid-template-rows: 1.75fr 1fr; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; }
+.logo-board > div { display: grid; place-items: center; min-height: 0; }
+.logo-board img { height: auto; }
+.logo-board__light img { width: 72%; }
+.logo-board__dark { background: #222848; }
+.logo-board__dark img { width: 40%; }
+.logo-board__cap { position: absolute; left: clamp(14px, 1.6vw, 22px); top: clamp(12px, 1.4vw, 18px); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--taupe); }
 
 /* Documents de chaque projet */
 .docs { grid-column: 1 / -1; order: 3; margin-top: clamp(4px, 1vw, 12px); padding-top: 22px; border-top: 1px solid var(--line); }
@@ -689,6 +700,11 @@ figcaption.caption { margin-top: 10px; }
 .skills { row-gap: 48px; }
 .skills__qual { grid-column: 1 / span 7; }
 .skills__qual .qualities { margin: 0; }
+/* Deux photos superposées sous les qualités : la seconde chevauche le bas de la première */
+.skills__photos { position: relative; width: min(100%, 560px); aspect-ratio: 560 / 440; margin-top: clamp(40px, 5vw, 72px); }
+.skills__photos .media { position: absolute; aspect-ratio: 4 / 5; }
+.skills__photos .media:first-child { left: 0; top: 0; width: 58%; }
+.skills__photos .media:last-child { left: 46%; top: 30%; width: 42%; border: clamp(4px, 0.55vw, 8px) solid var(--ivory); }
 .skills__tools { grid-column: 9 / -1; }
 .skills__tools h3 { margin-bottom: 14px; color: var(--taupe); }
 .skills__tools .tags { margin-top: 0; }
